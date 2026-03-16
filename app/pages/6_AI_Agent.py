@@ -7,7 +7,7 @@ sys.path.append(str(Path(__file__).parent.parent.parent))
 from src.agents.classification_agent import PeruGithubEcosystemAgent
 
 
-st.set_page_config(page_title="AI Ecosystem Agent", page_icon="🤖", layout="wide")
+# Página: AI Ecosystem Agent (Configurada vía main.py)
 st.title("🤖 Chat con el Ecosistema Peruanoh (AI Agent)")
 
 st.markdown("""
