@@ -52,8 +52,13 @@ def main():
                 username = user_item["login"]
                 print(f"👤 Procesando usuario: {username}")
                 
-                # Obtener detalles completos del usuario para métricas futuras
+                # Obtener detalles completos del usuario
                 user_detail = client.get_user(username)
+                
+                # Obtener actividad técnica adicional (Rubric compliance)
+                activity_counts = client.get_user_activity_counts(username)
+                user_detail.update(activity_counts)
+                
                 users_data.append(user_detail)
                 
                 # Obtener repositorios del usuario

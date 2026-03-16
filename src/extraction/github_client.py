@@ -135,3 +135,29 @@ class GitHubClient:
     def get_repo_languages(self, owner, repo):
         """Obtiene el desglose de bytes por lenguaje en el repo."""
         return self.make_request(f"repos/{owner}/{repo}/languages")
+
+    def get_user_activity_counts(self, username):
+        """
+        Obtiene conteos aproximados de actividad técnica del usuario usando la API de búsqueda.
+        """
+        # Conteos de Issues y PRs creados por el usuario
+        issues_query = f"author:{username} type:issue"
+        prs_query = f"author:{username} type:pr"
+        
+        try:
+            issues_resp = self.search_issues(issues_query, per_page=1)
+            prs_resp = self.search_issues(prs_query, per_page=1)
+            
+            return {
+                "total_issues": issues_resp.get("total_count", 0),
+                "total_prs": prs_resp.get("total_count", 0)
+            }
+        except:
+            return {"total_issues": 0, "total_prs": 0}
+
+    def search_issues(self, query, per_page=1, page=1):
+        """Busca issues/PRs en GitHub."""
+        endpoint = "search/issues"
+        params = {"q": query, "per_page": per_page, "page": page}
+        return self.make_request(endpoint, params=params)
+

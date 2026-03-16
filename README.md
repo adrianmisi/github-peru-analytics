@@ -36,6 +36,33 @@ The platform offers 6 distinct analysis domains:
 - **💻 Language Analytics**: Dominant technologies measured by codebase volume (Bytes) and repo count.
 - **🤖 AI Ecosystem Agent**: A conversational RAG agent that answers complex questions about the Peruvian tech landscape.
 
+## 📁 Repo Structure
+├── README.md                    # Main documentation
+├── requirements.txt             # Python dependencies
+├── .env.example                # Environment template
+├── .gitignore                  # Git ignore file
+│
+├── data/                        # Extracted and processed data
+│   ├── raw/                    # Raw API responses
+│   ├── processed/              # Cleaned CSVs (1,100+ repos)
+│   └── metrics/                # Calculated stats and Agent logs
+│
+├── src/                         # Source code
+│   ├── extraction/             # GitHub API client
+│   ├── processing/             # Metric calculation logic
+│   └── agents/                 # RAG AI Agent & Classification
+│
+├── app/                         # Streamlit Dashboard
+│   ├── main.py                 # Entry point
+│   ├── pages/                  # 6 Interactive pages
+│   └── utils/                  # Data loaders and charts
+│
+├── docs/                        # Project Documentation
+│   └── methodology.md          # Technical approach & Rubric details
+│
+├── scripts/                     # Executable pipeline scripts
+└── tests/                       # Unit tests for core logic
+
 ## ⚙️ Installation
 
 ### Prerequisites
@@ -88,12 +115,14 @@ streamlit run app/main.py
 ## ✅ Deliverables Checklist (Rubric Compliance)
 
 - **Extractions**: 1,100+ repositories with full metadata (`data/processed/repositories.csv`).
-- **Classification**: GPT-4 Industry classification with confidence and reasoning (`data/processed/classifications.csv`).
+- **Classification**: GPT-4 Industry classification with confidence and reasoning.
 - **Talent Analytics**: Developer clustering (Elite, Expert, Rising) and impact scores.
-- **RAG Agent**: AI Assistant with access to ecosystem metrics (`src/agents/classification_agent.py`).
-- **Dashboard**: 6 specialized pages in Streamlit (`app/pages/`).
-- **Easter Egg**: [Antigravity Screenshot](demo/screenshots/antigravity_screenshot.png).
-- **Video Demo**: [Watch the implementation Walkthrough](demo/video_link.md).
+- **RAG Agent**: AI Assistant with access to ecosystem metrics and interaction logging.
+- **Dashboard**: Professional 6-page interface (Overview, Talent, Repos, Industry, Languages, AI Agent).
+- **Documentation**: Detailed [Methodology](docs/methodology.md) and Video Walkthrough.
+- **Easter Egg**: [Antigravity Screenshot](demo/screenshots/antigravity_screenshot.png)
+
+![Antigravity Proof](demo/screenshots/antigravity_screenshot.png)
 
 ## 📐 Metrics Documentation
 ...
