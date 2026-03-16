@@ -39,7 +39,7 @@ industry_lang_bytes = defaultdict(lambda: defaultdict(int))
 
 for _, repo in repos_df.iterrows():
     try:
-        langs = json.loads(repo.get('languages', '{}'))
+        langs = json.loads(repo.get('languages_bytes', '{}'))
         repo_key = f"{repo['owner']}/{repo['name']}"
         ind = repo_industry_map.get(repo_key, 'Desconocido')
         
@@ -83,7 +83,7 @@ with col2:
         x='Language',
         y='Adoption %',
         color='Repos Using It',
-        color_continuous_scale='Agaln',
+        color_continuous_scale='aggrnyl',
         text_auto='.1f'
     )
     fig2.update_traces(textposition='outside')

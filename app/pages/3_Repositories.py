@@ -62,15 +62,15 @@ if lang_filter:
     filtered_df = filtered_df[filtered_df['languages'].str.contains(lang_filter, case=False, na=False)]
 
 # Ordenamos por cantidad de estrellas x defecto
-filtered_df['stargazers_count'] = pd.to_numeric(filtered_df['stargazers_count'], errors='coerce').fillna(0)
-filtered_df = filtered_df.sort_values(by='stargazers_count', ascending=False)
+filtered_df['stars'] = pd.to_numeric(filtered_df['stars'], errors='coerce').fillna(0)
+filtered_df = filtered_df.sort_values(by='stars', ascending=False)
 
 st.divider()
 st.subheader(f"Mostrando {len(filtered_df)} Repositorios")
 
 # Diseño en tabla custom para presentar razonamientos largos
 for _, row in filtered_df.head(50).iterrows(): # Paginamos virtualmente a 50 para rendimiento UI
-    with st.expander(f"⭐ {int(row['stargazers_count'])} | 📦 {row['repo_key']}"):
+    with st.expander(f"⭐ {int(row['stars'])} | 📦 {row['repo_key']}"):
         st.markdown(f"**URL:** [https://github.com/{row['repo_key']}](https://github.com/{row['repo_key']})")
         desc = row.get("description", "Sin descripción.")
         st.markdown(f"**Descripción:** {desc if pd.notna(desc) else 'No disponible'}")
