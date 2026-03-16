@@ -8,7 +8,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from app.utils.data_loader import load_all_data
 
-st.set_page_config(page_title="Industry Analysis", page_icon="🏭", layout="wide")
+# Página: Industry Analysis (Configurada vía main.py)
 st.title("🏭 Industry Analysis")
 
 # Cargar Datos

@@ -9,7 +9,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from app.utils.data_loader import load_all_data, format_number
 
-st.set_page_config(page_title="Peru GitHub Analytics", page_icon="📊", layout="wide")
+# Página: Overview (Configurada vía main.py)
 st.title("📊 Peru GitHub Ecosystem Overview")
 
 # Cargar Datos

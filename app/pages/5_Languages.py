@@ -10,7 +10,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from app.utils.data_loader import load_all_data
 
-st.set_page_config(page_title="Language Analytics", page_icon="💻", layout="wide")
+# Página: Language Analytics (Configurada vía main.py)
 st.title("💻 Language Analytics")
 
 # Cargar Datos

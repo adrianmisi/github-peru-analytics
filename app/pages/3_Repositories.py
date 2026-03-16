@@ -7,7 +7,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from app.utils.data_loader import load_all_data
 
-st.set_page_config(page_title="Repository Browser", page_icon="📦", layout="wide")
+# Página: Repository Browser (Configurada vía main.py)
 st.title("📦 Repository Browser")
 
 # Cargar Datos
