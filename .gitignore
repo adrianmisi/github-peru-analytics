@@ -1,0 +1,23 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Environment Variables
+.env
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Data (Optional: ignore raw data if it's too large, but usually good to keep processed)
+# data/raw/
+
+# IDE files
+.vscode/
+.idea/
+
+# Streamlit
+.streamlit/
