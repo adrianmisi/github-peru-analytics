@@ -119,7 +119,7 @@ streamlit run app/main.py
 - **Talent Analytics**: Developer clustering (Elite, Expert, Rising) and impact scores.
 - **RAG Agent**: AI Assistant with access to ecosystem metrics and interaction logging.
 - **Dashboard**: Professional 6-page interface (Overview, Talent, Repos, Industry, Languages, AI Agent).
-- **Documentation**: Detailed [Methodology](docs/methodology.md) and Video Walkthrough.
+- **Documentation**: Detailed [Methodology](docs/methodology.md) and [Video Walkthrough](https://drive.google.com/file/d/1O-hH4_Fe_wKA8JuEDrCemDsFrPdK7b_G/view?usp=sharing).
 - **Easter Egg**: [Antigravity Screenshot](demo/screenshots/antigravity_screenshot.png)
 
 ![Antigravity Proof](demo/screenshots/antigravity_screenshot.png)
@@ -140,7 +140,7 @@ The project includes a **Retrieval-Augmented Generation (RAG)** agent located in
 - **Classification Bias**: Generic or placeholder repositories default to Industry J on low-confidence inference.
 
 ## 📎 Video
-[Interactive Demo & Implementation Walkthrough](demo/video_link.md)
+[Interactive Demo & Implementation Walkthrough](https://drive.google.com/file/d/1O-hH4_Fe_wKA8JuEDrCemDsFrPdK7b_G/view?usp=sharing)
 
 ## 👤 Author
 **Adrian Misi**  
