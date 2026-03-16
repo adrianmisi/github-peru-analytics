@@ -76,6 +76,21 @@ def calculate_user_metrics(users, repos, classifications):
         if industries_in_repos:
             dominant_industry = Counter(industries_in_repos).most_common(1)[0][0]
 
+        # Lógica de Clustering para "Talent Analytics"
+        # Categorías: Elite, Expert, Active, Rising, Contributor
+        activity_int = int(activity_score)
+        if influence_score > 500:
+            cluster = "Elite Developer"
+        elif influence_score > 100 or activity_int > 50:
+            cluster = "Expert Developer"
+        elif technical_score > 5:
+            cluster = "Polyglot / Active"
+        elif engagement_score > 10:
+            cluster = "High Engagement"
+        else:
+            cluster = "Rising Talent"
+
+
         user_metrics.append({
             "login": owner,
             "name": user.get('name', ''),
@@ -85,8 +100,10 @@ def calculate_user_metrics(users, repos, classifications):
             "influence_score": influence_score,
             "technical_languages": technical_score,
             "engagement_forks": engagement_score,
-            "primary_industry": dominant_industry
+            "primary_industry": dominant_industry,
+            "developer_cluster": cluster
         })
+
         
     return user_metrics
 

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-15T21:31:17.067966",
+  "timestamp": "2026-03-15T22:46:38.667793",
   "totals": {
     "users": 19,
     "repositories": 1100,
@@ -9,7 +9,18 @@
     "followers_per_user": 127.89,
     "repos_per_user": 57.89
   },
-  "top_languages_by_bytes": {},
+  "top_languages_by_bytes": {
+    "Jupyter Notebook": 436440882,
+    "C++": 40772367,
+    "Java": 20173830,
+    "TeX": 11292832,
+    "HTML": 10085893,
+    "JavaScript": 6726581,
+    "CSS": 5206952,
+    "Python": 4669295,
+    "Rich Text Format": 3540231,
+    "TSQL": 3310597
+  },
   "top_industries_by_repo_count": {
     "J - Información y comunicación": 514,
     "P - Enseñanza": 308,

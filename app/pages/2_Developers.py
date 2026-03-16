@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px
 import sys
 from pathlib import Path
 
@@ -8,7 +9,7 @@ sys.path.append(str(Path(__file__).parent.parent.parent))
 from app.utils.data_loader import load_all_data
 
 st.set_page_config(page_title="Developer Explorer", page_icon="🧑‍💻", layout="wide")
-st.title("🧑‍💻 Developer Explorer")
+st.title("🧑‍💻 Talent Analytics & Developer Explorer")
 
 # Cargar Datos
 with st.spinner('Cargando métricas de desarrolladores...'):
@@ -19,22 +20,48 @@ if user_metrics_df.empty:
     st.stop()
 
 st.markdown("""
-Explora el ecosistema de desarrolladores Peruanos. Filtra por industria, actividad y visualiza sus métricas de impacto calculadas usando el framework base.
+Análisis de talento del ecosistema Peruano. Esta sección clasifica a los desarrolladores en **Clústers** según su impacto y actividad técnica.
 """)
 
-# Filtros
+# 1. Clustering Visualization
+st.subheader("Talent Clustering (Influence vs Activity)")
+fig_cluster = px.scatter(
+    user_metrics_df,
+    x="activity_repos",
+    y="influence_score",
+    color="developer_cluster",
+    size="technical_languages",
+    hover_name="login",
+    text="login",
+    labels={
+        "activity_repos": "Activity (Public Repos)",
+        "influence_score": "Influence (Stars + Followers)",
+        "developer_cluster": "Talent Cluster",
+        "technical_languages": "Tech Score"
+    },
+    title="Developer Landscape: Impact vs Quantity",
+    color_discrete_sequence=px.colors.qualitative.Prism
+)
+fig_cluster.update_traces(textposition='top center')
+st.plotly_chart(fig_cluster, use_container_width=True)
+
+st.divider()
+
+# 2. Explorer with Filters
+st.subheader("🔎 Advanced Developer Search")
+
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    industry_filter = st.selectbox(
-        "Filtrar por Industria Dominante",
-        options=["All"] + sorted(list(user_metrics_df['primary_industry'].dropna().unique())),
-        index=0
+    cluster_filter = st.multiselect(
+        "Filtrar por Clúster",
+        options=sorted(user_metrics_df['developer_cluster'].unique()),
+        default=sorted(user_metrics_df['developer_cluster'].unique())
     )
 
 with col2:
     min_activity = st.slider(
-        "Mínimo de Repositorios (Activity Score)",
+        "Mínimo de Repositorios",
         min_value=int(user_metrics_df['activity_repos'].min()),
         max_value=int(user_metrics_df['activity_repos'].max()),
         value=0
@@ -48,10 +75,7 @@ with col3:
 
 # Aplicar Filtros
 filtered_df = user_metrics_df.copy()
-
-if industry_filter != "All":
-    filtered_df = filtered_df[filtered_df['primary_industry'] == industry_filter]
-
+filtered_df = filtered_df[filtered_df['developer_cluster'].isin(cluster_filter)]
 filtered_df = filtered_df[filtered_df['activity_repos'] >= min_activity]
 
 # Mappear sort logic
@@ -65,17 +89,16 @@ sort_col_map = {
 filtered_df = filtered_df.sort_values(by=sort_col_map[sort_by], ascending=False)
 
 # Mostrar Tabla Interactiva
-st.divider()
-st.subheader(f"Encontrados: {len(filtered_df)} Desarrolladores")
+st.caption(f"Encontrados: {len(filtered_df)} Desarrolladores")
 
-display_cols = ['login', 'name', 'company', 'location', 'activity_repos', 'influence_score', 'technical_languages', 'engagement_forks', 'primary_industry']
+display_cols = ['login', 'developer_cluster', 'activity_repos', 'influence_score', 'technical_languages', 'engagement_forks', 'primary_industry', 'location']
 st.dataframe(
     filtered_df[display_cols],
     use_container_width=True,
     hide_index=True,
     column_config={
-        "login": st.column_config.TextColumn("GitHub Username", help="User handle de Github"),
-        "name": st.column_config.TextColumn("Name"),
+        "login": st.column_config.TextColumn("GitHub Username"),
+        "developer_cluster": st.column_config.TextColumn("Talent Cluster 🏆"),
         "influence_score": st.column_config.NumberColumn("Influence ⭐", format="%d"),
         "activity_repos": st.column_config.NumberColumn("Activity 📦"),
         "technical_languages": st.column_config.NumberColumn("Tech Score 💻"),
@@ -85,4 +108,5 @@ st.dataframe(
 )
 
 st.markdown("---")
-st.markdown("*Las métricas son calculadas en base a sus contribuciones y repositorios no-forkeados públicos.*")
+st.caption("*Analysis based on public, non-forked repository metadata.*")
+

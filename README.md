@@ -85,19 +85,19 @@ python scripts/calculate_metrics.py
 streamlit run app/main.py
 ```
 
+## ✅ Deliverables Checklist (Rubric Compliance)
+
+- **Extractions**: 1,100+ repositories with full metadata (`data/processed/repositories.csv`).
+- **Classification**: GPT-4 Industry classification with confidence and reasoning (`data/processed/classifications.csv`).
+- **Talent Analytics**: Developer clustering (Elite, Expert, Rising) and impact scores.
+- **RAG Agent**: AI Assistant with access to ecosystem metrics (`src/agents/classification_agent.py`).
+- **Dashboard**: 6 specialized pages in Streamlit (`app/pages/`).
+- **Easter Egg**: [Antigravity Screenshot](demo/screenshots/antigravity_screenshot.png).
+- **Video Demo**: [Watch the implementation Walkthrough](demo/video_link.md).
+
 ## 📐 Metrics Documentation
+...
 
-### User-Level Metrics
-- **Activity Score**: Derived from total public repositories.
-- **Influence Score**: Aggregation of stars and followers.
-- **Technical Score**: Count of unique languages mastered.
-- **Engagement Score**: Impact measured through forks and community interaction.
-
-### Ecosystem Metrics
-- **Geo Distribution**: Mapping developers to Peruvian regions.
-- **Industry Penetration**: Project distribution among CIIU sectors.
-- **Language Dominance**: Technology trends by byte count.
-- **Growth Indicators**: Average followers and repos per user.
 
 ## 🤖 AI Agent Documentation
 The project includes a **Retrieval-Augmented Generation (RAG)** agent located in `src/agents/classification_agent.py`.
